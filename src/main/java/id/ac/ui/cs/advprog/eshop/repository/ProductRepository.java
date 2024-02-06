@@ -18,15 +18,27 @@ public class ProductRepository {
         return product;
     }
 
+    public Product delete(String id) {
+        Product product = findById(id).get();
+        int index = findIndex(product);
+        productData.remove(index);
+
+        return product;
+    }
+
     public Product save(Product product) {
-        //looping to replace old product to new product
+        int index = findIndex(product);
+        productData.set(index, product);
+        return product;
+    }
+
+    public int findIndex(Product product){
         for (int i = 0; i < productData.size(); i++) {
             if (productData.get(i).getProductId().equals(product.getProductId())) {
-                productData.set(i, product);
-                break;
+                return i;
             }
         }
-        return product;
+        return -1;
     }
 
     public Iterator<Product> findAll(){
