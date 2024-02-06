@@ -38,4 +38,9 @@ public class ProductController {
         return "productList";
     }
 
+    @GetMapping("")
+    public String showHomePage(){
+        return "index";
+    }
+
 }
