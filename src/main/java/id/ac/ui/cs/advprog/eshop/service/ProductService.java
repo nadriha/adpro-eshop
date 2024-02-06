@@ -6,5 +6,7 @@ import id.ac.ui.cs.advprog.eshop.model.Product;
 
 public interface ProductService {
     public Product create(Product product);
+    public Product findById(String id);
+    public Product save(Product product);
     public List<Product> findAll();
 }
