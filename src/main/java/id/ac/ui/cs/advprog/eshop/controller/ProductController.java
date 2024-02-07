@@ -40,7 +40,7 @@ public class ProductController {
 
     @GetMapping("")
     public String showHomePage(){
-        return "index";
+        return "index"; //index tuh nama page htmlnya index.html
     }
 
     @GetMapping("/edit/{id}")
