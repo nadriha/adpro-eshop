@@ -133,4 +133,15 @@ class ProductRepositoryTest {
         productRepository.delete(product1.getProductId());
         assertFalse(productIterator.hasNext());
     }
+
+    @Test
+    void testDeleteProductIfEmpty(){
+        Product product = new Product();
+        product.setProductId("ebaghalo-1c39-460e-8860-7haihaibd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+
+        Product editedProduct = productRepository.delete(product.getProductId());
+        assertNull(editedProduct);
+    }
 }

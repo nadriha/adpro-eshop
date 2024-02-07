@@ -3,7 +3,7 @@ package id.ac.ui.cs.advprog.eshop.repository;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +19,10 @@ public class ProductRepository {
     }
 
     public Product delete(String id) {
-        Product product = findById(id).get();
+        Product product = findById(id);
+        if (product == null){
+            return null;
+        }
         int index = findIndex(product);
         productData.remove(index);
 
@@ -48,12 +51,12 @@ public class ProductRepository {
         return productData.iterator();
     }
 
-    public Optional<Product> findById(String id){
+    public Product findById(String id){
         for (Product product : productData) {
             if (product.getProductId().equals(id)) {
-                return Optional.of(product);
+                return product;
             }
         }
-        return Optional.empty(); 
+        return null;
     }
 }
