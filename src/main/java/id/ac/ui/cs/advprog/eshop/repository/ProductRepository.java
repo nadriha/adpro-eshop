@@ -3,6 +3,7 @@ package id.ac.ui.cs.advprog.eshop.repository;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +18,31 @@ public class ProductRepository {
         return product;
     }
 
+    public Product save(Product product) {
+        int index = findIndex(product);
+        productData.set(index, product);
+        return product;
+    }
+
+    public int findIndex(Product product){
+        for (int i = 0; i < productData.size(); i++) {
+            if (productData.get(i).getProductId().equals(product.getProductId())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public Iterator<Product> findAll(){
         return productData.iterator();
+    }
+
+    public Optional<Product> findById(String id){
+        for (Product product : productData) {
+            if (product.getProductId().equals(id)) {
+                return Optional.of(product);
+            }
+        }
+        return Optional.empty(); 
     }
 }
