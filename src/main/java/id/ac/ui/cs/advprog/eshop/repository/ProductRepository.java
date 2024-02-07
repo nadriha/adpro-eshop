@@ -28,6 +28,9 @@ public class ProductRepository {
 
     public Product save(Product product) {
         int index = findIndex(product);
+        if (index == -1){
+            return null;
+        }
         productData.set(index, product);
         return product;
     }
