@@ -18,6 +18,14 @@ public class ProductRepository {
         return product;
     }
 
+    public Product delete(String id) {
+        Product product = findById(id).get();
+        int index = findIndex(product);
+        productData.remove(index);
+
+        return product;
+    }
+
     public Product save(Product product) {
         int index = findIndex(product);
         productData.set(index, product);
