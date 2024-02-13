@@ -80,7 +80,7 @@ public class ProductControllerTest {
 
     @Test
     void testDeleteProduct() {
-        String id = "1";
+        String id = "2";
 
         String viewName = productController.deleteProduct(id);
 
