@@ -97,4 +97,11 @@ public class ProductControllerTest {
         assert(viewName.equals("redirect:list"));
     }
 
+    @Test
+    void testShowHomePage() {
+        String viewName = productController.showHomePage();
+
+        assert(viewName.equals("index"));
+    }
+
 }
