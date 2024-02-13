@@ -39,5 +39,32 @@ public class ProductServiceImplTest {
         assertEquals(mockProduct.getProductName(), found.getProductName());
     }
 
+    @Test
+    public void createTest() {
+        Product mockProduct = new Product();
+        mockProduct.setProductId("123");
+        mockProduct.setProductName("Product");
+
+        when(productRepository.create(mockProduct)).thenReturn(mockProduct);
+
+        Product created = productService.create(mockProduct);
+
+        assertEquals(mockProduct.getProductName(), created.getProductName());
+    }
+
+    @Test
+    public void deleteTest() {
+        String id = "123";
+        Product mockProduct = new Product();
+        mockProduct.setProductId("123");
+        mockProduct.setProductName("Product");
+
+        when(productRepository.delete(id)).thenReturn(mockProduct);
+
+        Product deleted = productService.delete(id);
+
+        assertEquals(mockProduct.getProductName(), deleted.getProductName());
+    }
+
 
 }
