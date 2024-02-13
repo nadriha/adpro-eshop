@@ -3,6 +3,9 @@ package id.ac.ui.cs.advprog.eshop.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
 
@@ -66,5 +69,37 @@ public class ProductServiceImplTest {
         assertEquals(mockProduct.getProductName(), deleted.getProductName());
     }
 
+    @Test
+    public void saveTest() {
+        Product mockProduct = new Product();
+        mockProduct.setProductId("123");
+        mockProduct.setProductName("Product");
 
+        when(productRepository.save(mockProduct)).thenReturn(mockProduct);
+
+        Product saved = productService.save(mockProduct);
+
+        assertEquals(mockProduct.getProductName(), saved.getProductName());
+    }
+
+    @Test
+    public void findAllTest() {
+        Product mockProduct1 = new Product();
+        mockProduct1.setProductId("123");
+        mockProduct1.setProductName("Product1");
+
+        Product mockProduct2 = new Product();
+        mockProduct2.setProductId("456");
+        mockProduct2.setProductName("Product2");
+
+        List<Product> mockProducts = Arrays.asList(mockProduct1, mockProduct2);
+
+        when(productRepository.findAll()).thenReturn(mockProducts.iterator());
+
+        List<Product> foundProducts = productService.findAll();
+
+        assertEquals(2, foundProducts.size());
+        assertEquals(mockProduct1.getProductName(), foundProducts.get(0).getProductName());
+        assertEquals(mockProduct2.getProductName(), foundProducts.get(1).getProductName());
+    }
 }
