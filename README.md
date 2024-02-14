@@ -30,6 +30,12 @@
 1.  Remove unnecessary modifier  
     ProductService sebelumnya terdapat menuliskan modifier public untuk setiap method. Tetapi karena ProductService adalah interface, maka by default semua method yang dimiliki ProductService adalah public abstract
 
+2.  Change unused import 'org.springframework.web.bind.annotation.*'
+    Karena annotation yang digunakan tidak terlalu banyak, tidak harus mengimport semua annotation
+
+3.  Returning the value vs storing it in local variables
+    Menghindari pembuatan variabel lokal yang tidak perlu.
+
 ### CI/CD workflows
 Menurut pendapat saya, kode yang telah saya buat telah memenuhi definisi CI/CD. Saat mengintegrasikan perubahan kode ke dalam repositori, CI adalah proses di mana kita melakukan pengujian terhadap kode tersebut. Sedangkan CD adalah proses deployment. Dengan menggunakan GitHub workflows, program saya dapat menjalani testing setiap kali ada push ke suatu branch. Sebagai contoh, pada alur kerja CI workflow, testing pada kode dilakukan dengan unit test menggunakan Gradle. Selain itu, PMD workflow sebagai code analysis tool juga menjalankan testing pada kode dengan melakukan analisis kode. Kode yang telah lulus semua tes tersebut, jika dipush dan digabungkan ke branch main akan secara otomatis di deploy ke PaaS Koyeb.
 
