@@ -51,7 +51,8 @@ Menurut pendapat saya, kode yang telah saya buat telah memenuhi definisi CI/CD. 
     Implementasi: Pemisahan code `CarController.java` pada package `controller` 
 -   **Open-Closed Principle (OCP)**  
     Objek atau entitas harus terbuka untuk ekstensi tetapi ditutup untuk modifikasi  
-    Implementasi:
+    Implementasi: Pada class `Car` dibuat method update sehingga jika dibuat subclassnya tetap dapat melakukan update sesuai yang subclassnya inginkan
+
 -   **Interface Segregation Principle (ISP)**  
     Implementasi: Pemisahan interface `CarService.java` dan `ProductService.java` yag dipisahkan sesuai dengan penggunaannya.
 -   **Dependency Inversions Principle (DIP)**  
