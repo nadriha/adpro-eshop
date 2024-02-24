@@ -17,7 +17,7 @@ import id.ac.ui.cs.advprog.eshop.service.CarService;
 
 @Controller
 @RequestMapping("/car")
-public class CarController{
+public class CarController {
 
     @Autowired
     private CarService carservice;
