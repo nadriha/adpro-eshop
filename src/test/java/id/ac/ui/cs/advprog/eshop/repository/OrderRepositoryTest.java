@@ -110,7 +110,7 @@ class OrderRepositoryTest {
     }
 
     @Test
-    void testFindAllByAuthorIfAllLowecase(){
+    void testFindAllByAuthorIfAllLowercase(){
         orderRepository.save(orders.get(1));
 
         List<Order> orderList = orderRepository.findAllByAuthor(orders.get(1).getAuthor().toLowerCase());
