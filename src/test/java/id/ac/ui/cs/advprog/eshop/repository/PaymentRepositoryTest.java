@@ -112,7 +112,7 @@ public class PaymentRepositoryTest {
             paymentRepository.save(payment);
         }
 
-        List<Payment> paymentList = paymentRepository.getAllPayment();
+        List<Payment> paymentList = paymentRepository.getAllPayments();
 
         assertEquals(2, paymentList.size());
     }
