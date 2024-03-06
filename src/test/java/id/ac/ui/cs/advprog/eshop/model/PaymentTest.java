@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.never;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ class PaymentTest {
 
     @BeforeEach
     void setUp() {
+        paymentData = new HashMap<>();
         this.products = new ArrayList<>();
         Product product1 = new Product();
 
@@ -39,7 +41,6 @@ class PaymentTest {
 
     @Test
     void testCreatePaymentWithNoPaymentData(){
-        this.paymentData.clear();
         assertThrows(IllegalArgumentException.class, () -> {
             Payment payment = new Payment("eb558e9f-1c39-460e-8860-71afhy6dfbd6", "", order, paymentData);
         });
@@ -47,7 +48,7 @@ class PaymentTest {
 
     @Test
     void testCreatePaymentWithValidVoucher(){
-        paymentData.put("voucherCode","ESHOPNGG12345678");
+        paymentData.put("voucherCode","ESHOP1234ABC5678");
         Payment payment = new Payment("eb558e9f-1c39-460e-8860-71afhy6dfbd6", "VOUCHER_CODE", order, paymentData);
 
         assertEquals("SUCCESS", payment.getStatus());
