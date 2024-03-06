@@ -33,7 +33,7 @@ public class PaymentRepositoryTest {
         product1.setProductQuantity(2);
         products.add(product1);
 
-        Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b", products,1708560000L,"Safira Sudrajat");
+        Order order = new Order("13652556-012b-4c07-b546-54eb1396d79b", products,1708560000L,"Safira Sudrajat");
 
         payments = new ArrayList<>();
         Map<String, String> paymentData1 = new HashMap<>();
