@@ -3,6 +3,8 @@ package id.ac.ui.cs.advprog.eshop.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.never;
@@ -51,7 +53,7 @@ class PaymentTest {
         paymentData.put("voucherCode","ESHOP1234ABC5678");
         Payment payment = new Payment("eb558e9f-1c39-460e-8860-71afhy6dfbd6", "VOUCHER_CODE", order, paymentData);
 
-        assertEquals("SUCCESS", payment.getStatus());
+        assertEquals(PaymentStatus.SUCCESS.getValue(), payment.getStatus());
     }
 
     @Test
@@ -59,7 +61,7 @@ class PaymentTest {
         paymentData.put("voucherCode","ESHOPNGG12GHYJL34");
         Payment payment = new Payment("eb558e9f-1c39-460e-8860-71afhy6dfbd6", "VOUCHER_CODE", order, paymentData);
 
-        assertEquals("REJECTED", payment.getStatus());
+        assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
     }
 
     @Test
@@ -67,7 +69,7 @@ class PaymentTest {
         paymentData.put("voucherCode","BALGEBUN9543539");
         Payment payment = new Payment("eb558e9f-1c39-460e-8860-71afhy6dfbd6", "VOUCHER_CODE", order, paymentData);
 
-        assertEquals("REJECTED", payment.getStatus());
+        assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
     }
 
     @Test
@@ -76,7 +78,7 @@ class PaymentTest {
         paymentData.put("referenceCode", "1234");
         Payment payment = new Payment("eb558e9f-1c39-460e-8860-71afhy6dfbd6", "BANK_TRANSFER", order, paymentData);
 
-        assertEquals("SUCCESS", payment.getStatus());
+        assertEquals(PaymentStatus.SUCCESS.getValue(), payment.getStatus());
     }
 
     @Test
@@ -84,7 +86,7 @@ class PaymentTest {
         paymentData.put("referenceCode", "1234");
         Payment payment = new Payment("eb558e9f-1c39-460e-8860-71afhy6dfbd6", "BANK_TRANSFER", order, paymentData);
 
-        assertEquals("REJECTED", payment.getStatus());
+        assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
     }
 
     @Test
