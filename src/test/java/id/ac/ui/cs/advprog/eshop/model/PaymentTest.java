@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class PaymentTest {
+class PaymentTest {
     List<Product> products;
     Order order;
     Map<String, String> paymentData;
@@ -58,7 +58,7 @@ public class PaymentTest {
         paymentData.put("voucherCode","ESHOPNGG12GHYJL34");
         Payment payment = new Payment("eb558e9f-1c39-460e-8860-71afhy6dfbd6", "VOUCHER_CODE", order, paymentData);
 
-        assertEquals("SUCCESS", payment.getStatus());
+        assertEquals("REJECTED", payment.getStatus());
     }
 
     @Test
@@ -66,13 +66,13 @@ public class PaymentTest {
         paymentData.put("voucherCode","BALGEBUN9543539");
         Payment payment = new Payment("eb558e9f-1c39-460e-8860-71afhy6dfbd6", "VOUCHER_CODE", order, paymentData);
 
-        assertEquals("SUCCESS", payment.getStatus());
+        assertEquals("REJECTED", payment.getStatus());
     }
 
     @Test
     void testCreatePaymentWithValidBankTrasfer(){
         paymentData.put("bankName", "BNI");
-        paymentData.put("referenceCode", "1234")
+        paymentData.put("referenceCode", "1234");
         Payment payment = new Payment("eb558e9f-1c39-460e-8860-71afhy6dfbd6", "BANK_TRANSFER", order, paymentData);
 
         assertEquals("SUCCESS", payment.getStatus());
