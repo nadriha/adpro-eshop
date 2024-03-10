@@ -24,6 +24,7 @@ public class Payment {
         this.method = method;
         this.order = order;
         this.status = PaymentStatus.WAITING_PAYMENT.getValue();
+        this.paymentData = paymentData;
 
         if (paymentData.isEmpty()){
             throw new IllegalArgumentException();

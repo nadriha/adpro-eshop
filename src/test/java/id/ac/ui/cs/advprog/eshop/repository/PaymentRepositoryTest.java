@@ -24,7 +24,7 @@ public class PaymentRepositoryTest {
     @BeforeEach
     void setUp(){
         paymentRepository = new PaymentRepository();
-        List<Payment> payments = new ArrayList<>();
+        payments = new ArrayList<>();
 
         List<Product> products = new ArrayList<>();
         Product product1 = new Product();
@@ -36,6 +36,7 @@ public class PaymentRepositoryTest {
         Order order = new Order("13652556-012b-4c07-b546-54eb1396d79b", products,1708560000L,"Safira Sudrajat");
 
         payments = new ArrayList<>();
+        
         Map<String, String> paymentData1 = new HashMap<>();
         paymentData1.put("voucherCode", "ESHOP12345678QWE");
         Payment payment1 = new Payment("13652556-012a-4c07-b546-54eb1396d79a","VOUCHER_CODE", order, paymentData1);
@@ -59,7 +60,7 @@ public class PaymentRepositoryTest {
         assertEquals(payment.getId(), findResult.getId());
         assertEquals(payment.getMethod(), findResult.getMethod());
         assertEquals(payment.getOrder(), findResult.getOrder());
-        assertEquals(payment.getPaymentData(), findResult.getStatus());
+        assertEquals(payment.getPaymentData(), findResult.getPaymentData());
         assertEquals(payment.getStatus(), findResult.getStatus());
     }
 
@@ -67,6 +68,7 @@ public class PaymentRepositoryTest {
     void testSaveUpdate(){
         Payment payment = payments.get(0);
         paymentRepository.save(payment);
+
         Payment newPayment = new Payment(payment.getId(), payment.getMethod(), payment.getOrder(), payment.getPaymentData());
         Payment results = paymentRepository.save(newPayment);
 
