@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
-import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
+
 import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
 import id.ac.ui.cs.advprog.eshop.model.Product;
@@ -78,7 +77,7 @@ public class PaymentRepositoryTest {
         assertEquals(payment.getId(), findResult.getId());
         assertEquals(payment.getMethod(), findResult.getMethod());
         assertEquals(payment.getOrder(), findResult.getOrder());
-        assertEquals(payment.getPaymentData(), findResult.getStatus());
+        assertEquals(payment.getPaymentData(), findResult.getPaymentData());
         assertEquals(payment.getStatus(), findResult.getStatus());
     }
 
