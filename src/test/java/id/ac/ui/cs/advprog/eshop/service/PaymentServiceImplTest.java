@@ -26,7 +26,7 @@ import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.repository.PaymentRepository;
 
 @ExtendWith(MockitoExtension.class)
-public class PaymentServiceImpl {
+public class PaymentServiceImplTest {
     @InjectMocks
     PaymentServiceImpl paymentService;
 
@@ -77,7 +77,7 @@ public class PaymentServiceImpl {
 
         Payment result = paymentService.addPayment(payment.getId(),payment.getOrder(), "VOUCHER_CODE", payment.getPaymentData());
 
-        veify(paymentRepository, times(1).save(payment));
+        verify(paymentRepository, times(1)).save(payment);
         assertEquals(payment.getId(), result.getId());
     }
 
@@ -89,13 +89,13 @@ public class PaymentServiceImpl {
 
         assertNull(paymentService.addPayment(payment.getId(),payment.getOrder(), "VOUCHER_CODE", payment.getPaymentData()));
 
-        verify(paymentRepository, times(0).save(payment));
+        verify(paymentRepository,times(0)).save(payment);
     }
 
     @Test
     void testSetStatus(){
         Payment payment = payments.get(0);
-        Payment newPayment = paymentRepository.setStatus(payment, "SUCCESS");
+        Payment newPayment = paymentService.setStatus(payment, "SUCCESS");
         
         doReturn(payment).when(paymentRepository).findById(payment.getId());
         doReturn(newPayment).when(paymentRepository).save(any(Payment.class));
@@ -105,7 +105,7 @@ public class PaymentServiceImpl {
         assertEquals(payment.getId(), result.getId());
         assertEquals("SUCCESS", result.getStatus());
         assertEquals("SUCCESS", result.getOrder().getStatus());
-        verify(paymentRepository, times(2)).save(any(Order.class));
+        verify(paymentRepository, times(2)).save(any(Payment.class));
 
     }
 
@@ -114,7 +114,7 @@ public class PaymentServiceImpl {
         Payment payment = payments.get(0);
         doReturn(payment).when(paymentRepository).findById(payment.getId());
 
-        Order result = paymentService.findById(payment.getId());
+        Payment result = paymentService.getPayment(payment.getId());
         assertEquals(payment.getId(), result.getId());
     }
 
