@@ -2,6 +2,7 @@ package id.ac.ui.cs.advprog.eshop.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,21 +18,41 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public Payment addPayment(String id, Order order, String method, Map<String, String> paymentData){
+        if (paymentRepository.findById(id) == null){
+
+            Payment payment = new Payment(id, method, order, paymentData);
+            paymentRepository.save(payment);
+
+            return payment;
+        }
         return null;
     }
 
     @Override
     public Payment setStatus(Payment payment, String status){
-        return null;
+        if (payment != null){
+            payment.setStatus(status);
+            
+            if (status.equals("SUCCESS")){
+                payment.getOrder().setStatus("SUCCESS");
+            } else if (status.equals("REJECTED")){
+                payment.getOrder().setStatus("FAILED");
+            }
+
+            paymentRepository.save(payment);
+            return payment;
+        }else {
+            throw new NoSuchElementException();
+        }
     }
 
     @Override
     public Payment getPayment(String id){
-        return null;
+        return paymentRepository.findById(id);
     }
 
     @Override
     public List<Payment> getAllPayments(){
-        return null;
+        return paymentRepository.getAllPayments();
     }
 }

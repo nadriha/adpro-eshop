@@ -73,11 +73,11 @@ public class PaymentServiceImplTest {
     void testAddPayment(){
         Payment payment = payments.get(0);
 
-        doReturn(payment).when(paymentRepository).save(payment);
+        doReturn(payment).when(paymentRepository).save(any(Payment.class));
 
         Payment result = paymentService.addPayment(payment.getId(),payment.getOrder(), "VOUCHER_CODE", payment.getPaymentData());
 
-        verify(paymentRepository, times(1)).save(payment);
+        verify(paymentRepository, times(1)).save(any(Payment.class));
         assertEquals(payment.getId(), result.getId());
     }
 
@@ -95,17 +95,13 @@ public class PaymentServiceImplTest {
     @Test
     void testSetStatus(){
         Payment payment = payments.get(0);
-        Payment newPayment = paymentService.setStatus(payment, "SUCCESS");
-        
-        doReturn(payment).when(paymentRepository).findById(payment.getId());
-        doReturn(newPayment).when(paymentRepository).save(any(Payment.class));
 
         Payment result = paymentService.setStatus(payment, "SUCCESS");
 
         assertEquals(payment.getId(), result.getId());
         assertEquals("SUCCESS", result.getStatus());
         assertEquals("SUCCESS", result.getOrder().getStatus());
-        verify(paymentRepository, times(2)).save(any(Payment.class));
+        verify(paymentRepository, times(1)).save(any(Payment.class));
 
     }
 
